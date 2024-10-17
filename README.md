@@ -14,7 +14,7 @@ https://youtu.be/zrfDKT_2uuQ?si=PRNn4ZvCkfEFM-lf
 ### RDP code
 
 ```
-name: Window 10
+name: Windows 10 RDP
 
 on: [push, workflow_dispatch]
 
@@ -23,11 +23,10 @@ jobs:
 
     runs-on: windows-latest
     timeout-minutes: 9999
-
-
+    
     steps:
     - name: Download
-      run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
     - name: Extract
       run: Expand-Archive ngrok.zip
     - name: Auth
@@ -38,7 +37,7 @@ jobs:
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "@cyb3rking" -Force)
+    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Create Tunnel
       run: .\ngrok\ngrok.exe tcp 3389
 ```
@@ -46,7 +45,7 @@ jobs:
 ### Default username & password
 username - runneradmin
 
-password - @cyb3rking
+password - P@ssw0rd!
 #### Features:
 - **Secure Remote Desktop:** Establish a secure tunnel for remote desktop access to a Windows environment.
 - **Ngrok Integration:** Utilize ngrok to create secure tunnels to localhost.
