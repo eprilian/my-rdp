@@ -14,7 +14,7 @@ https://youtu.be/zrfDKT_2uuQ?si=PRNn4ZvCkfEFM-lf
 ### RDP code
 
 ```
-name: Windows 10 RDP
+name: Windows-RDP
 
 on: [push, workflow_dispatch]
 
@@ -22,8 +22,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-    timeout-minutes: 9999
-    
+
     steps:
     - name: Download
       run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
